@@ -70,6 +70,10 @@ namespace Faker
         private object CreateObject(Type type)
         {
             var ctor = GetConstructorWithMinParameters(type);
+            if(ctor == null)
+            {
+                return CreateObject(type);
+            }
             var ctorParams = ctor.GetParameters();
             var paramsList = new List<object>(); 
             foreach(var param in ctorParams)
@@ -79,10 +83,10 @@ namespace Faker
             return ctor.Invoke(paramsList.ToArray());
         }
 
-        private ConstructorInfo GetConstructorWithMinParameters(Type type)
+        private ConstructorInfo? GetConstructorWithMinParameters(Type type)
         {
             var constructors = type.GetConstructors();
-            var ctor = constructors.OrderBy(c=>c.GetParameters().Length).First();
+            var ctor = constructors.OrderBy(c=>c.GetParameters().Length).FirstOrDefault();
             return ctor;
         }
     }

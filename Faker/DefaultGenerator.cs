@@ -18,6 +18,7 @@ namespace Faker
             _generators.Add(typeof(int), new IntGenerator());
             _generators.Add(typeof(double), new DoubleGenerator());
             _generators.Add(typeof(DateTime), new DateGenerator());
+            _generators.Add(typeof(bool), new BoolGenerator());
 
             SetGeneratorsFromPlugins();
         }
