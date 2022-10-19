@@ -21,5 +21,5 @@ public class TestClass
 }
 public class B
 {
-    public TestClass testClass;
+    public string A;
 }

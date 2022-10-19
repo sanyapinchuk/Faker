@@ -18,22 +18,23 @@ namespace Faker
             _generators.Add(typeof(int), new IntGenerator());
             _generators.Add(typeof(double), new DoubleGenerator());
             _generators.Add(typeof(DateTime), new DateGenerator());
+
+            SetGeneratorsFromPlugins();
         }
 
         private void SetGeneratorsFromPlugins()
         {
-            string pathToAdvancedGeneratorsDll = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\lib\\");
+            string pathToAdvancedGeneratorsDll = System.IO.Path.Combine(Directory.GetCurrentDirectory(), "..\\..\\..\\..\\BuildedPlugins\\");
             string[] allDll = Directory.GetFiles(pathToAdvancedGeneratorsDll, "*.dll");
             foreach (string dllPath in allDll)
             {
                 Assembly asm = Assembly.LoadFrom(dllPath);
                 foreach (Type type in asm.GetExportedTypes())
                 {
-                    Console.WriteLine(type);
                     if (type.IsClass && typeof(IGenerator).IsAssignableFrom(type))
                     {
-                        IGenerator g = (IGenerator)Activator.CreateInstance(type);
-                        _generators.Add(g.GetGeneratorType(), g);
+                        IGenerator generator = (IGenerator)Activator.CreateInstance(type);
+                        _generators.Add(generator.GetGeneratedType(), generator);
                     }
                 }
             }

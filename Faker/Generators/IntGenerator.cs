@@ -5,4 +5,9 @@ public class IntGenerator: IGenerator
     {
         return new Random().Next() % 1000;
     }
+
+    public Type GetGeneratedType()
+    {
+        return typeof(int);
+    }
 }

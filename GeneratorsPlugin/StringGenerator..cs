@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Faker.Interfaces;
 
 namespace GeneratorsPlugin
 {
-    public class StringGenerator 
+    public class StringGenerator : IGenerator
     {
         public object Generate()
         {
             return "default string";
+        }
+
+        public Type GetGeneratedType()
+        {
+            return typeof(string);
         }
     }
 }

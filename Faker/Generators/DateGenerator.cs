@@ -13,5 +13,10 @@ namespace Faker.Generators
         {
             return DateTime.Now;    
         }
+
+        public Type GetGeneratedType()
+        {
+            return typeof(DateTime);
+        }
     }
 }

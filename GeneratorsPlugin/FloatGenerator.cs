@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Faker.Generators
+namespace GeneratorsPlugin
 {
-    public class DoubleGenerator : IGenerator
+    public class FloatGenerator : IGenerator
     {
         public object Generate()
         {
-            return new Random().NextDouble() % 1000 * 0.12;
+            return new Random().NextSingle();
         }
 
         public Type GetGeneratedType()
         {
-            return typeof(double);  
+            return typeof(float);
         }
     }
 }
