@@ -9,5 +9,6 @@ namespace Faker.Interfaces
     public interface IGenerator
     {
         object Generate();
+        Type GetGeneratedType();
     }
 }

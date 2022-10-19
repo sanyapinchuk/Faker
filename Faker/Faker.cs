@@ -36,6 +36,7 @@ namespace Faker
                 _stackTypes.Add(type);
                 var createdObj = CreateObject(type);
                 InitializePropsAndFields(createdObj);
+                _stackTypes.Remove(type);
                 return createdObj;
             }
             else
